@@ -1,0 +1,32 @@
+<form action="{% url 'home:home' %}" method="post" class="form-horizontal">
+	{% csrf_token %}
+	<div class="{% if form.text.errors %}has-error{% endif %}">
+		<input
+            placeholder="paste title"
+            style="width: 30%; margin:10px 0"
+            name="title"
+            class="form-control paste-text-field "
+        />
+	</div>
+
+    <div class="{% if form.text.errors %}has-error{% endif %}">
+		<textarea
+            style="width: 30%"
+            name="text"
+            placeholder="enter paste"
+            class="form-control paste-text-field {% if form.text.errors %}has-error{% endif %}"
+            rows="10">
+        </textarea>
+	</div>
+	<br>
+	<!-- Tabs -->
+	<div role="tabpanel">
+			<!-- Submit -->
+			<div class="form-group form-actions">
+				<div class="col-sm-offset-2 col-sm-10">
+					<button class="btn btn-primary">Submit paste</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
