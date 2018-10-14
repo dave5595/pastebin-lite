@@ -16,11 +16,13 @@ class SubmitPasteForm(forms.Form):
 
     title = forms.CharField(max_length=128,
                             required=False,
-                            widget=forms.TextInput(attrs={"placeholder": "Untitled"}))
-    text = forms.CharField(min_length=1,
+                            widget=forms.TextInput(attrs={"placeholder": "Untitled", "class": 'form-control paste-text-field'}))
+    text = forms.CharField(widget=forms.Textarea,
+                            min_length=1,
                            max_length=100000,
                            error_messages={"required": "The paste can't be empty."})
-    expiration = forms.ChoiceField(choices=EXPIRATION_CHOICES)
+
+    expiration = forms.ChoiceField(widget=forms.Select, choices=EXPIRATION_CHOICES)
 
     def __init__(self, *args, **kwargs):
         self.request = kwargs.pop('request', None)

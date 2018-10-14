@@ -1,32 +1,54 @@
 <form action="{% url 'home:home' %}" method="post" class="form-horizontal">
 	{% csrf_token %}
-	<div class="{% if form.text.errors %}has-error{% endif %}">
-		<input
-            placeholder="paste title"
-            style="width: 30%; margin:10px 0"
-            name="title"
-            class="form-control paste-text-field "
-        />
-	</div>
-
     <div class="{% if form.text.errors %}has-error{% endif %}">
-		<textarea
-            style="width: 30%"
-            name="text"
-            placeholder="enter paste"
-            class="form-control paste-text-field {% if form.text.errors %}has-error{% endif %}"
-            rows="10">
-        </textarea>
+        {{ form.text }}
+{#		<textarea#}
+{#            style="width: 40%"#}
+{#            name="text"#}
+{#            placeholder="enter paste"#}
+{#            class="form-control paste-text-field {% if form.text.errors %}has-error{% endif %}"#}
+{#            rows="15">#}
+{#        </textarea>#}
 	</div>
-	<br>
+    <!-- optional paste settings-->
+    <div>
+        <div style="border-bottom: 2px solid gray;width: 16%;margin: 15px 10px;">
+            <h3 style="margin: 10px auto;">Optional Paste Settings</h3>
+        </div>
+        <div class="{% if form.text.errors %}has-error{% endif %}">
+            <span style="margin:0 15px 0 10px;">
+                <label>Paste Name/Title</label>
+            </span>
+            {{ form.title }}
+{#            <input#}
+{#                name="title"#}
+{#                placeholder="enter paste"#}
+{#                class="form-control paste-text-field {% if form.text.errors %}has-error{% endif %}"#}
+{#            />#}
+        </div>
+        <div style="margin: 15px 0;">
+            <span style="margin: 0 15px 0 10px;">
+                <label>Paste Expiration</label>
+            </span>
+            {{ form.expiration }}
+{#            <select name="expiration" style="width: 120px; margin: 0 5px;">#}
+{#                <option value="Never">Never</option>#}
+{#                <option value="15 Minute">15 Minute</option>#}
+{#                <option value="1 Hour">1 Hour</option>#}
+{#                <option value="1 Day">1 Day</option>#}
+{#                <option value="1 Week">1 Week</option>#}
+{#                <option value="1 Month">1 Month</option>#}
+{#            </select>#}
+        </div>
+    </div>
 	<!-- Tabs -->
-	<div role="tabpanel">
+	    <div role="tabpanel">
 			<!-- Submit -->
-			<div class="form-group form-actions">
+			<div style="margin: 0 10px" class="form-group form-actions">
 				<div class="col-sm-offset-2 col-sm-10">
-					<button class="btn btn-primary">Submit paste</button>
+					<button class="btn btn-primary">Create New Paste</button>
 				</div>
 			</div>
 		</div>
-	</div>
+
 </form>

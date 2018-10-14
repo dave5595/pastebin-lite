@@ -8,7 +8,7 @@ import hashlib
 import random
 import string
 
-# TODO: create paste_contents
+# TODO: create user
 # TODO: read up on django caching
 
 class PasteManager(models.Manager):
@@ -55,18 +55,16 @@ class Paste (models.Model):
     title = models.CharField(max_length=128)
     expiration_datetime = models.DateTimeField(null=True, blank=True)
     # Is the paste removed (removed from view but not deleted)
-    text = models.TextField()
+    text = models.TextField(max_length=100000, default="TEXT")
     deleted = models.BooleanField(default=False)
     submitted = models.DateTimeField(auto_now_add=True, db_index=True)
 
-    def add_paste(self, text, user=None, title="Untitled", expiration=None, visibility=None, format="text",
-                  encrypted=False):
+    def add_paste(self, text, user=None, title="Untitled", expiration=None):
         """Add paste with the provided title and text
         Returns the paste's char ID if the paste was successfully added, False otherwise"""
         self.char_id = self.generate_random_char_id()
         self.title = title
         self.text = text
-        self.deleted = False
 
         if expiration != Paste.NEVER and expiration != None:
             self.expiration_datetime = self.get_new_expiration_datetime(expiration)
@@ -82,7 +80,8 @@ class Paste (models.Model):
         # Add paste in a transaction
         with transaction.atomic():
             self.save()
-        return self.char_id
+        # return self.char_id
+        return self
 
     def delete_paste(self, reason=""):
         """
@@ -181,4 +180,4 @@ class Paste (models.Model):
         Generate a random 8 character string for the char id
         """
         # ascii_letters supposedly is a cont of upper and lowercase
-        return ''.join(random.SystemRandom().choice(string.ascii_letters + string.digits) for _ in xrange(8))
+        return ''.join(random.SystemRandom().choice(string.ascii_letters + string.digits) for _ in range(8))

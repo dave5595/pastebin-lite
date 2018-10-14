@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %} pastebin-django{% endblock %}
+
+{% block content %}
+{#    TODO: add delete btn #}
+<a href="/">Go to home</a>
+<div class="container">
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-3">
+                <p><b>TITLE:</b> {{ paste.title }}</p>
+                <p><b>DATE:</b> {{ paste.submitted }}</p>
+                    <p><b style="color: red;">EXPIRY DATE:</b> {{ paste.expiration_datetime }}</p>
+            </div>
+            <div style="width: 40%" class="col-md-8">
+                {{ paste_text }}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
