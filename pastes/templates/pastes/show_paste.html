@@ -11,10 +11,13 @@
             <div class="col-md-3">
                 <p><b>TITLE:</b> {{ paste.title }}</p>
                 <p><b>DATE:</b> {{ paste.submitted }}</p>
-                    <p><b style="color: red;">EXPIRY DATE:</b> {{ paste.expiration_datetime }}</p>
+                <p><b style="color: red;">EXPIRY DATE:</b> {{ paste.expiration_datetime }}</p>
             </div>
-            <div style="width: 40%" class="col-md-8">
+            <div class="col-md-8 paste-content-container">
                 {{ paste_text }}
+            </div>
+            <div>
+                <a href="{% url 'confirm_delete' paste.char_id %}"  class="btn btn-danger">Delete Paste</a>
             </div>
         </div>
     </div>

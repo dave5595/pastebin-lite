@@ -83,7 +83,7 @@ class Paste (models.Model):
         # return self.char_id
         return self
 
-    def delete_paste(self, reason=""):
+    def delete_paste(self):
         """
         Mark the paste as deleted
         """

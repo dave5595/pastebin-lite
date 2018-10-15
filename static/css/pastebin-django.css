@@ -15,6 +15,12 @@
 	font-size: 8pt;
 }
 
+.paste-content-container{
+    width: 100%;
+    border:2px solid #cecece;
+    min-height: 250px;
+}
+
 /* Class that removes the styling Bootstrap normally applies to pre elements */
 .pre-code {
 	background-color: white !important;

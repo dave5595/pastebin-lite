@@ -4,5 +4,5 @@ from . import views
 app_name = "pastes"
 
 urlpatterns = [
-    path('', views.ShowPaste.as_view(), name='show-pastes')
+    path('paste/<str:char_id/delete>', views.DeletePaste.as_view(), name='delete_paste'),
 ]
