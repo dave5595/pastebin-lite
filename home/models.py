@@ -4,6 +4,7 @@ from django.core.cache import cache
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Q
 
+import datetime
 import hashlib
 import random
 import string
@@ -55,16 +56,18 @@ class Paste (models.Model):
     title = models.CharField(max_length=128)
     expiration_datetime = models.DateTimeField(null=True, blank=True)
     # Is the paste removed (removed from view but not deleted)
-    text = models.TextField(max_length=100000, default="TEXT")
+    hits = models.IntegerField(db_index=True, default=0)
+    text = models.TextField(max_length=100000, default="")
     deleted = models.BooleanField(default=False)
     submitted = models.DateTimeField(auto_now_add=True, db_index=True)
 
-    def add_paste(self, text, user=None, title="Untitled", expiration=None):
+    def add_paste(self, text, title="Untitled", expiration=None):
         """Add paste with the provided title and text
         Returns the paste's char ID if the paste was successfully added, False otherwise"""
         self.char_id = self.generate_random_char_id()
         self.title = title
         self.text = text
+        self.hits = 0
 
         if expiration != Paste.NEVER and expiration != None:
             self.expiration_datetime = self.get_new_expiration_datetime(expiration)

@@ -35,8 +35,8 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
     'livereload',
+    'django.contrib.staticfiles',
     'home.apps.HomeConfig',
     'pastes.apps.PastesConfig'
 ]
@@ -118,7 +118,7 @@ SESSION_CACHE_ALIAS = "default"
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Singapore'
 
 USE_I18N = True
 

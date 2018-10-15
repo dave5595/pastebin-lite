@@ -4,18 +4,27 @@
 
 {% block content %}
 {#    TODO: add delete btn #}
-<a href="/">Go to home</a>
 <div class="container">
     <div class="panel-body">
         <div class="row">
-            <div class="col-md-3">
-                <p><b>TITLE:</b> {{ paste.title }}</p>
-                <p><b>DATE:</b> {{ paste.submitted }}</p>
-                <p><b style="color: red;">EXPIRY DATE:</b> {{ paste.expiration_datetime }}</p>
-               <p>is deleted: {{ paste.deleted }}</p>
-            </div>
-            <div class="col-md-8 paste-content-container">
-                {{ paste_text }}
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        Title: {{ paste.title }}
+                    </h4>
+                    <h4 class="panel-title" style="display: inline-block;margin-bottom: 10px;">
+                        <span class="glyphicon glyphicon-calendar"></span>: {{ paste.submitted }}
+                    </h4>
+                    <h4 class="panel-title" style="display: inline-block">
+                        <span class="glyphicon glyphicon-time"></span>: {{ paste.expiration_datetime }}
+                    </h4>
+                    <h4 class="panel-title" style="display: inline-block">
+                        <span class="glyphicon glyphicon-eye-open"></span>: {{ paste.hits }}
+                    </h4>
+                </div>
+                <div class="panel-body paste-content-container">
+                      {{ paste_text }}
+                </div>
             </div>
             <div>
                 <a href="{% url 'confirm_delete' paste.char_id %}"  class="btn btn-danger">Delete Paste</a>

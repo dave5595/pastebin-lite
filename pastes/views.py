@@ -1,21 +1,23 @@
 from django.shortcuts import render,redirect
 from django.views import View
+from django.utils import timezone
+from .query_utils import get_queryset
 
 from django.views.generic import *
 from home.models import Paste
 from django.core.exceptions import ObjectDoesNotExist
 
 # Create your views here.
-# TODO: Add condition to not fetch deleted pastes
+# TODO: Add condition to fetch non expired pastes
 class ShowPaste(View):
     template = "pastes/show_paste.html"
 
-    def get_queryset(self):
-        return Paste.objects.filter(deleted=False).get(char_id=self.kwargs['char_id'])
+    # def get_queryset(self):
+    #     return Paste.objects.filter(deleted=False).get(char_id=self.kwargs['char_id'])
 
     def get(self, request, char_id):
         try:
-            paste = self.get_queryset()
+            paste = get_queryset(self)
         except ObjectDoesNotExist:
             print('something went wrong')
             return render(request, "pastes/show_error.html", {"reason": "not_found"}, status=404)
@@ -34,8 +36,12 @@ class ConfirmDelete(View):
            print(paste.char_id)
            return render(request, self.template, {"paste": paste})
        else:
-           print(' cant find paste')
-           return render(request, self.template)
+           try:
+              paste = get_queryset(self)
+           except ObjectDoesNotExist:
+                return render(request, "pastes/show_error.html", { "reason": "not_found"}, status=404)
+           else:
+               return render(request, self.template, {"paste": paste})
 
 class DeletePaste(View):
 

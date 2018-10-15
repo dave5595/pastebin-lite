@@ -23,6 +23,10 @@
 {% block body %}
 {% block body_tag %}<body>{% endblock body_tag %}
 {# TODO: nav and search#}
+
+    {#    NAVBAR#}
+    {% block navbar %}{% include 'navbar.html' %}{% endblock navbar %}
+
     {# PAGE CONTENT #}
     {% block content %}
     {% endblock content %}
