@@ -32,19 +32,14 @@ class ShowQueryResults(View):
 
     def get(self, request):
         context_dict = {}
-        #go get the data with the query
         query = request.GET['q']
-        print("query",query)
         pastes = get_queryset_for_search(query)
 
         if not pastes:
-            print('no result')
             context_dict['no_results'] = query
         else:
-            print("got res", pastes)
             context_dict['pastes'] = pastes
         return render(request, self.template, context_dict)
-
 
 class ConfirmDelete(View):
    template = "pastes/confirm_delete_paste.html"
