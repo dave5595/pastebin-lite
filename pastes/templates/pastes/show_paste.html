@@ -12,6 +12,7 @@
                 <p><b>TITLE:</b> {{ paste.title }}</p>
                 <p><b>DATE:</b> {{ paste.submitted }}</p>
                 <p><b style="color: red;">EXPIRY DATE:</b> {{ paste.expiration_datetime }}</p>
+               <p>is deleted: {{ paste.deleted }}</p>
             </div>
             <div class="col-md-8 paste-content-container">
                 {{ paste_text }}

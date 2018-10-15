@@ -6,19 +6,24 @@ from home.models import Paste
 from django.core.exceptions import ObjectDoesNotExist
 
 # Create your views here.
-# TODO: Add delete function
+# TODO: Add condition to not fetch deleted pastes
 class ShowPaste(View):
     template = "pastes/show_paste.html"
 
     def get_queryset(self):
-        return Paste.objects.get(char_id=self.kwargs['char_id'] )
+        return Paste.objects.filter(deleted=False).get(char_id=self.kwargs['char_id'])
 
     def get(self, request, char_id):
-        print(char_id)
-        paste = self.get_queryset()
-        #save current Paste in session
-        request.session['paste'] = paste
-        return render(request, self.template, {"paste": paste, "paste_text": paste.text})
+        try:
+            paste = self.get_queryset()
+        except ObjectDoesNotExist:
+            print('something went wrong')
+            return render(request, "pastes/show_error.html", {"reason": "not_found"}, status=404)
+        else:
+            print(paste.char_id)
+            # save current Paste in session
+            request.session['paste'] = paste
+            return render(request, self.template, {"paste": paste, "paste_text": paste.text})
 
 class ConfirmDelete(View):
    template = "pastes/confirm_delete_paste.html"
@@ -37,8 +42,12 @@ class DeletePaste(View):
    def post(self, request, char_id):
        try:
            paste = Paste.objects.get(char_id=char_id)
-           paste.delete_paste()
+           del request.session['paste']
        except ObjectDoesNotExist:
            render(request, "pastes/show_error.html", {"reason": "not_found"}, status=404)
+       except KeyError:
+           raise
+       else:
+           paste.delete_paste()
        finally:
            return redirect("home:home")

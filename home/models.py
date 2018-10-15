@@ -89,6 +89,7 @@ class Paste (models.Model):
         """
         with transaction.atomic():
             self.deleted = True
+            self.save()
         return True
 
     def get_new_expiration_datetime(self, expiration):
