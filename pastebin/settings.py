@@ -111,7 +111,6 @@ AUTH_PASSWORD_VALIDATORS = [
 SESSION_ENGINE = "django.contrib.sessions.backends.cache"
 SESSION_CACHE_ALIAS = "default"
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
@@ -130,3 +129,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = "" # Change this to directory to where all static files should be copied to
+
+STATICFILES_DIRS = ( '%s/../../static/' % os.path.realpath(__file__), )

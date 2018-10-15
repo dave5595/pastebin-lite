@@ -13,7 +13,6 @@ class HomeView(View):
     template = "home/home.html"
 
     def get(self, request):
-        print("get req called")
         form = self.form_class(request=request)
         return render(request, self.template, {'form': form})
 
@@ -30,8 +29,6 @@ class HomeView(View):
             saved_paste = paste.add_paste(title=paste_data["title"],
                                               text=paste_data["text"],
                                               expiration=paste_data["expiration"],)
-
-            print("paste obj id", saved_paste.char_id)
             # Redirect to the newly created paste
             return redirect("show_paste", char_id=saved_paste.char_id)
 
