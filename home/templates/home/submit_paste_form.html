@@ -1,6 +1,6 @@
 <form action="{% url 'home:home' %}" method="post" class="form-horizontal">
 	{% csrf_token %}
-    <div class="{% if form.text.errors %}has-error{% endif %}">
+    <div class="form-group">
         {{ form.text }}
 	</div>
     <!-- optional paste settings-->
