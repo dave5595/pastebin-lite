@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.views import View
 from django.utils import timezone
-from .query_utils import get_queryset
+from .query_utils import get_queryset, get_queryset_for_search
 
 from django.views.generic import *
 from home.models import Paste
@@ -26,6 +26,25 @@ class ShowPaste(View):
             # save current Paste in session
             request.session['paste'] = paste
             return render(request, self.template, {"paste": paste, "paste_text": paste.text})
+
+class ShowQueryResults(View):
+    template = "pastes/queried_paste_results.html"
+
+    def get(self, request):
+        context_dict = {}
+        #go get the data with the query
+        query = request.GET['q']
+        print("query",query)
+        pastes = get_queryset_for_search(query)
+
+        if not pastes:
+            print('no result')
+            context_dict['no_results'] = query
+        else:
+            print("got res", pastes)
+            context_dict['pastes'] = pastes
+        return render(request, self.template, context_dict)
+
 
 class ConfirmDelete(View):
    template = "pastes/confirm_delete_paste.html"
