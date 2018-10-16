@@ -1,7 +1,6 @@
 from django.contrib import admin
 from django.urls import path, include
 from pastes import views as paste_views
-from home import views as home_views
 
 urlpatterns = [
     path('', include('home.urls', 'home')),

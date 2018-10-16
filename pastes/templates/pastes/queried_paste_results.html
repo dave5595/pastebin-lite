@@ -5,6 +5,7 @@
     {% if no_results %}
         <h3>No results returned for <q>{{ no_results }}</q></h3>
     {% else %}
+        <h3>Results returned for <q>{{ query }}:</q></h3>
         {% for paste in pastes %}
               <a href="{% url 'show_paste' paste.char_id %}" class="list-group-item list-group-item-action">
                 {{ paste.title }}

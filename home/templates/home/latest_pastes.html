@@ -7,14 +7,12 @@
 	<thead>
 		<tr>
 			<th>Title</th>
-			<th>Age</th>
 		</tr>
 	</thead>
 	<tbody>
 		{% for paste in latest_pastes %}
 		<tr>
-			<td><a href="{% url "show_paste" paste.char_id %}">{{ paste.title|truncatechars:64 }}</a></td>
-{#			<td>{{ paste.submitted|naturaltime }}</td>#}
+			<td><a href="{% url "show_paste" paste.char_id %}">{{ paste.title |truncatechars:64 }}</a></td>
 		</tr>
 		{% endfor %}
 	</tbody>

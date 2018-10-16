@@ -1,10 +1,7 @@
 from django import forms
 from .models import Paste
 
-# TODO: read up on django forms!
-
 class SubmitPasteForm(forms.Form):
-    """ Form to submit the paste. Contains paste text, title and optionally, time until expiration"""
     EXPIRATION_CHOICES = (
         (Paste.NEVER, "Never"),
         (Paste.FIFTEEN_MINUTES, "15 minutes"),
@@ -25,17 +22,7 @@ class SubmitPasteForm(forms.Form):
 
     expiration = forms.ChoiceField(widget=forms.Select(attrs={"class": 'form-control'}), choices=EXPIRATION_CHOICES)
 
-    def __init__(self, *args, **kwargs):
-        self.request = kwargs.pop('request', None)
-
-        if self.request == None:
-            raise AttributeError(
-                "'%s' requires a valid Django request object as its request parameter" % self.__class__.__name__)
-
-        super(SubmitPasteForm, self).__init__(*args, **kwargs)
-
     def clean_title(self):
-        """Replace the title with Untitled if it is not provided"""
         title = self.cleaned_data.get("title")
         # If user provides an empty title, replace it with Untitled
         if title.strip() == "":
@@ -43,5 +30,4 @@ class SubmitPasteForm(forms.Form):
         return title
 
     def clean_text(self):
-        """Check that the user hasn't uploaded too many pastes"""
         return self.cleaned_data.get("text")

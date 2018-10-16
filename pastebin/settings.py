@@ -107,11 +107,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-SESSION_SAVE_EVERY_REQUEST = True
-
-# Use Redis as a session cache
+#Session
 SESSION_ENGINE = "django.contrib.sessions.backends.cache"
-SESSION_CACHE_ALIAS = "default"
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
@@ -125,7 +122,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/

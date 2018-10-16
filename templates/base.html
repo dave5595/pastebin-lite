@@ -1,7 +1,6 @@
 {% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
-{# HEADER #}
 {% block head %}
 <head>
     {% load staticfiles %}
@@ -12,8 +11,7 @@
 	<meta name="author" content="">
 	
 	<title>pastebin-django</title>
-	
-	<!-- Bootstrap core CSS -->
+	<!-- Bootstrap CSS -->
 	<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
 	<link href="{% static 'css/pastebin-django.css' %}" rel="stylesheet">
 	{% block extra_head %}{% endblock %}
@@ -21,7 +19,7 @@
 {% endblock head %}
 
 {% block body %}
-{% block body_tag %}<body>{% endblock body_tag %}
+<body>
 
     {#    NAVBAR#}
     {% block navbar %}{% include 'navbar.html' %}{% endblock navbar %}
@@ -30,15 +28,6 @@
     {% block content %}
     {% endblock content %}
 
-    {# FOOTER #}
-    {% load staticfiles %}
-	<!-- Bootstrap core JavaScript
-	================================================== -->
-	<!-- Placed at the end of the document so the pages load faster -->
-{#	<script src="{% static 'js/jquery.min.js' %}"></script>#}
-{#	<script src="{% static 'js/bootstrap.min.js' %}"></script>#}
-{#	<script src="{% static 'js/jquery.readmore.min.js' %}"></script>#}
-	{% block extra_js %}{% endblock extra_js %}
 </body>
 {% endblock body %}
 
