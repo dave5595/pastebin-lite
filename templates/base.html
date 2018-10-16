@@ -3,7 +3,6 @@
 <html lang="en">
 {% block head %}
 <head>
-    {% load staticfiles %}
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,24 +10,24 @@
 	<meta name="author" content="">
 	
 	<title>pastebin-django</title>
+
 	<!-- Bootstrap CSS -->
 	<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
 	<link href="{% static 'css/pastebin-django.css' %}" rel="stylesheet">
-	{% block extra_head %}{% endblock %}
 </head>
 {% endblock head %}
 
 {% block body %}
 <body>
 
+    <!--Nav bar-->
     {#    NAVBAR#}
     {% block navbar %}{% include 'navbar.html' %}{% endblock navbar %}
 
-    {# PAGE CONTENT #}
+    <!--Page Content-->
     {% block content %}
     {% endblock content %}
 
 </body>
 {% endblock body %}
-
 </html>
