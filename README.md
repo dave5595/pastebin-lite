@@ -23,7 +23,6 @@ To-do's in progress
 --
 - [ ] Learn to write unit test in Django
 - [ ] Learn to implement caching to improve performance
-- [ ] Learn to write better python code  
 
 Starting the development web server
 --
