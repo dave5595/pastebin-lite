@@ -1,8 +1,6 @@
 Pastebin Lite
 --
 A Django based prototype developed to get a better sense for the framework and language. 
-This readme serves as a documentation on my journey as a newbie at Python and Django to learn and improve my knowledge on the language and framework  
-Feel free to perform a code review and inform me of any code smells and best practices i should know about through the issues !     
 
 User Stories
 --
@@ -36,3 +34,7 @@ Run the following command to run the web application on 127.0.0.1:8000, which is
 
 Try opening http://127.0.0.1:8000 in your web browser. If everything worked out correctly, you should now be able to use the web application as normal.
 
+Thoughts
+--  
+- This readme serves as a documentation on my journey as a newbie at Python and Django to learn and improve my knowledge on the language and framework  
+- Feel free to perform a code review and submit an issue to inform me of any code smells and best practices i should know about !     
