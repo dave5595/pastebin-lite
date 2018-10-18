@@ -11,6 +11,13 @@
     font-size: 10pt;
 }
 
+.inline-btn-float-right{
+    float: right;
+    display: inline-block;
+    bottom: 10px;
+    position: relative;
+}
+
 .latest-pastes-table {
 	font-size: 8pt;
 }

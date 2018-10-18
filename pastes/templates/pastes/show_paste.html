@@ -21,14 +21,15 @@
                     <h4 class="panel-title" style="display: inline-block">
                         <span class="glyphicon glyphicon-eye-open"></span>: {{ paste.hits }}
                     </h4>
+                     <div class="inline-btn-float-right">
+                        <a href="{% url 'confirm_delete' paste.char_id %}"  class="btn btn-danger">Delete Paste</a>
+                    </div>
                 </div>
                 <div class="panel-body paste-content-container">
                       {{ paste_text }}
                 </div>
             </div>
-            <div>
-                <a href="{% url 'confirm_delete' paste.char_id %}"  class="btn btn-danger">Delete Paste</a>
-            </div>
+
         </div>
     </div>
 </div>
