@@ -24,6 +24,10 @@ To-do's in progress
 - [ ] Learn to write unit test in Django
 - [ ] Learn to implement caching to improve performance
 
+Authors
+--
+* **David Ebenezer** - *Initial work* 
+
 Starting the development web server
 --
 Run the following command to run the web application on 127.0.0.1:8000, which is also the URL you'll need to enter into your web browser in order to access the site. Feel free to change the address and/or port depending on your working environment.
